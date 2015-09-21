@@ -42,5 +42,8 @@ than or equal to eight.
     letters[0,rand(3..8)].join
   end
 
+  def random_price
+    rand(10...50)
+  end 
 
 end
