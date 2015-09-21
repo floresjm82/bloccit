@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
 # give my_post a random title and body.
 let (:my_post) {Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
 
-  describe "GET #index" do
+  describe "GET index" do
     it "returns http success" do
 # 7 - the test performs a get on the index view and expects the response to be successful.
       get :index
