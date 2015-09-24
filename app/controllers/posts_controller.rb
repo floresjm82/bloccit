@@ -43,5 +43,37 @@ class PostsController < ApplicationController
 # to collect the data submitted by the user and update the database. create is a POST action.
 
   def edit
+    @post = Post.find(params[:id])
   end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.title = params[:post][:title]
+    @post.body = params[:post][:body]
+
+    if @post.save
+      flash[:notice] = "Post was updated."
+      redirect_to @post
+    else
+      flash[:error] = "There was an error saving the post. Please try again."
+      render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+# we call destroy on @post, we call was successful we set a flash message and
+# redirect the user tot he posts index view... if it fails we redirect the user
+# to show view using render :show.
+    if @post.destroy
+      flash[:notice] = "\"#{@post.title}\" was deleted successfullly."
+      redirect_to posts_path
+    else
+      flash[:error] = "There was an error deleting the post."
+      render :show
+    end
+  end
+
+
 end
