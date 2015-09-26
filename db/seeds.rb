@@ -31,6 +31,16 @@ posts = Post.all
   )
 end
 
+50.times do
+  Question.create!(
+
+    title:  RandomData.random_sentence,
+    body:   RandomData.random_paragraph,
+    resolved: RandomData.random_boolean
+  )
+end
+
+
 # Create Comments
 #3 - this will run a given block the specified number of times...
 100.times do
@@ -54,3 +64,4 @@ puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created"

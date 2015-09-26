@@ -44,6 +44,10 @@ than or equal to eight.
 
   def random_price
     rand(10...50)
-  end 
+  end
+
+  def random_boolean
+    rand_boolean = [true, false].sample
+  end
 
 end
