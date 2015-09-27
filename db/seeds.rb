@@ -2,6 +2,17 @@
 
 include RandomData
 
+
+15.times do
+  Topic.create!(
+
+    name:  RandomData.random_sentence,
+    description:   RandomData.random_paragraph
+    )
+end
+topics = Topic.all
+
+
 # Create Posts
 50.times do
 # 1 - adding ! instructs the method to raise an error if theres a problem with
@@ -13,6 +24,7 @@ create random strings for title and body.  Writing code for classes and methods
 that don't exist is known as "wishful coding" and can increase productivity
 because it allows you to stay focused on one problem at a time.
 =end
+    topic: topics.sample,
     title: RandomData.random_sentence,
     body:  RandomData.random_paragraph
   )
@@ -41,6 +53,7 @@ end
 end
 
 
+
 # Create Comments
 #3 - this will run a given block the specified number of times...
 100.times do
@@ -61,7 +74,9 @@ Comment.find_or_create_by(body: 'Unique Body for Comment')
 
 
 puts "Seed finished"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
+puts "#{Topic.count} topics created"

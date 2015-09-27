@@ -13,9 +13,10 @@ Rails.application.routes.draw do
 1 - WE call the resources method and pass it a symbol...instructs Rails to
 create post routes for creating, updaing, viewing, and deleting instances of Post
 =end
-  resources :posts, :advertisements, :questions
-
-  
+  resources :advertisements, :questions
+  resources :topics do
+     resources :posts, except: [:index]
+   end
 =begin
 
   get 'welcome/index'
