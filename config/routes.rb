@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
 
+  get 'sponsored_posts/index'
+
+  get 'sponsored_posts/show'
+
+  get 'sponsored_posts/new'
+
+  get 'sponsored_posts/edit'
+
 =begin
   get 'posts/index'
 
@@ -16,6 +24,7 @@ create post routes for creating, updaing, viewing, and deleting instances of Pos
   resources :advertisements, :questions
   resources :topics do
      resources :posts, except: [:index]
+     resources :sponsored_posts, except: [:index]
    end
 =begin
 

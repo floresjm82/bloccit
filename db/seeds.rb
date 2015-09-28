@@ -34,6 +34,18 @@ Post.find_or_create_by(title: 'Unique Title for Post', body: 'Unique Body for Po
 
 posts = Post.all
 
+SponsoredPost.create!(
+
+  topic: topics.sample,
+  title: RandomData.random_sentence,
+  body:  RandomData.random_paragraph,
+  price: RandomData.random_price
+)
+end
+
+sponsored_posts = SponsoredPost.all
+
+
 50.times do
   Advertisement.create!(
 
