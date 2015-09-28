@@ -34,13 +34,15 @@ Post.find_or_create_by(title: 'Unique Title for Post', body: 'Unique Body for Po
 
 posts = Post.all
 
-SponsoredPost.create!(
+50.times do
 
-  topic: topics.sample,
-  title: RandomData.random_sentence,
-  body:  RandomData.random_paragraph,
-  price: RandomData.random_price
-)
+  SponsoredPost.create!(
+
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body:  RandomData.random_paragraph,
+    price: RandomData.random_price
+  )
 end
 
 sponsored_posts = SponsoredPost.all
@@ -92,3 +94,4 @@ puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
 puts "#{Topic.count} topics created"
+puts "#{SponsoredPost.count} sponsored posts created"

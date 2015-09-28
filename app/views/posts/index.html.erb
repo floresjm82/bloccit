@@ -1,0 +1,21 @@
+<h1>Posts#index</h1>
+<p>Find me in app/views/posts/index.html.erb</p>
+<h1>All Posts</h1>
+<!--
+We iterate over each post in @posts and create a link with post.title as the text
+that links to /posts/id, where the id is derived from post.id.  Instances variables
+created and assigned in PostsController#index, we can use it in the posts index view.
+-->
+<% @posts.each_with_index do |post, index| %>
+  <div class="media">
+    <div clas="media-body">
+      <h4 class="media-heading">
+        <% if ((index +1) % 5) == 0 %>
+          <p>"CENSORED"</p>
+        <% else %>
+          <%= link_to post.title, post %>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+<% end %>

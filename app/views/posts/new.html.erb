@@ -17,7 +17,7 @@ code allows a user to submit a post title and body, thus creating a new post.
     </ul>
   </div>
   <div class="col-md-8">
-    <%= form_for @post do |f| %>
+    <%= form_for [@topic, @post] do |f| %>
       <div class="form-group">
 <!-- We use f.label to display title. This functionality is provided by form_for.
 # form_for yields a form builder object which in turns provides label. f.label in
