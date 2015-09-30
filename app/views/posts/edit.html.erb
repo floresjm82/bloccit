@@ -10,18 +10,14 @@
     </ul>
   </div>
   <div class="col-md-8">
-    <%= form_for [@post.topic, @post] do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
-    </dir>
-    <div class="form-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    </div>
-    <% end %>
+    <%= render partial: 'form', locals: { topic: @post.topic, post: @post } %>
+<!--
+Partials are fragments of view code, which are called from views. Partials are
+called with the render method. Rendering a partila is like copying and pasting
+view code from another file. Our view is called _form.html.erb, while we render
+the partial: 'form'.  This is a Rails convention for partial naming.
+Partials are essentially the Rails view version of extract-method refactoring.
+By consolidating reused code to one location.
+-->
   </div>
 </div>

@@ -16,6 +16,12 @@ the spec, so we only need to instantiate it once.
 
   it {should belong_to(:topic)}
 
+  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:body) }
+  it { should validate_presence_of(:topic) }
+  it { should validate_length_of(:title).is_at_least(5) }
+  it { should validate_length_of(:body).is_at_least(20) }
+
   describe "attributes" do
 # 2 - we test wehther "post" has an attribute named title.  This tests whether
 # post will return a non-nil value when post.title is called.
