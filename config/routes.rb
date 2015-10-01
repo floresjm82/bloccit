@@ -18,6 +18,10 @@ create post routes for creating, updaing, viewing, and deleting instances of Pos
      resources :posts, except: [:index]
      resources :sponsored_posts, except: [:index]
    end
+
+# we create routes for new and create actions...only hash key will preven Rails
+# from creating unnecessary routes.
+  resources :users, only: [:new, :create]
 =begin
 
   get 'welcome/index'
