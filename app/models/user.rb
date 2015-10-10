@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   before_save do
     self.email = email.downcase
 
-# self.name = (name.split.each { |n| n.capitalize!}).join(" ")  ????
+    self.name = (name.split.each { |n| n.capitalize!}).join(" ")
+  end
+=begin
     n_array = name.split
     n_capitalize = []
     n_array.each do |n|
@@ -14,7 +16,7 @@ class User < ActiveRecord::Base
     end
     self.name = n_capitalize.join(" ")
   end
-
+=end
 
 # we set a variable to a regular expression, which defines a specific character
 # pattern that we want to match against a string. The character pattern that we
