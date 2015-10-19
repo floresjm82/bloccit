@@ -22,6 +22,7 @@ create post routes for creating, updaing, viewing, and deleting instances of Pos
 # we create routes for new and create actions...only hash key will preven Rails
 # from creating unnecessary routes.
   resources :users, only: [:new, :create]
+    post 'users/confirm' => 'users#confirm'
 =begin
 
   get 'welcome/index'
