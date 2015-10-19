@@ -23,6 +23,9 @@ create post routes for creating, updaing, viewing, and deleting instances of Pos
 # from creating unnecessary routes.
   resources :users, only: [:new, :create]
     post 'users/confirm' => 'users#confirm'
+
+  resources :sessions, only: [:new, :create, :destroy]
+
 =begin
 
   get 'welcome/index'
