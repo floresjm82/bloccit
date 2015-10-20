@@ -3,9 +3,11 @@ module SessionsHelper
 
 # create_session sets user_id on the session object to user.id, which is unique for each user
 # session is an object Rails provides to track the state of a particular user and only one user.
-  def create_session(user)
+     def create_session(user)
        session[:user_id] = user.id
      end
+
+
 
 # we clear the user id on the session object by setting it to nil and therefore can't track it via their user id
      def destroy_session(user)

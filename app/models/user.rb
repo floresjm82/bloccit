@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   end
 =end
 
+
+
 # we set a variable to a regular expression, which defines a specific character
 # pattern that we want to match against a string. The character pattern that we
 # set EMAIL_REGEX to defines what constitutes a valid email address.
