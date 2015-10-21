@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  has_many :posts
 # Callbacks are hooks into the life cycle of an Active Record object that allow
 # you to trigger logic before or after an aleration of the object state.
 

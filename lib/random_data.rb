@@ -4,6 +4,19 @@ no dependencies or inheritance requirements.  Modules help keep coommon function
 organized and reusable throughout our application
 =end
 module RandomData
+
+
+  def random_name
+    first_name = random_word.capitalize
+    last_name = random_word.capitalize
+    "#{first_name} #{last_name}"
+  end
+
+  def random_email
+    "#{random_word}@#{random_word}.#{random_word}"
+  end
+
+
 =begin
 6 - we define random_paragraph. We set sentences to an array. We create four to
 six random sentences and append them to sentences. We call join on sentences to

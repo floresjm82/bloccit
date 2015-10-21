@@ -2,6 +2,17 @@
 
 include RandomData
 
+5.times do
+  user = User.create!(
+
+  name: RandomData.random_name,
+  email: RandomData.random_email,
+  password: RandomData.random_sentence
+
+  )
+end
+users = User.all
+
 
 15.times do
   Topic.create!(
@@ -24,6 +35,7 @@ create random strings for title and body.  Writing code for classes and methods
 that don't exist is known as "wishful coding" and can increase productivity
 because it allows you to stay focused on one problem at a time.
 =end
+    user:   users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body:  RandomData.random_paragraph
@@ -85,9 +97,15 @@ end
 
 Comment.find_or_create_by(body: 'Unique Body for Comment')
 
+user = User.first
+user.update_attributes!(
+  email: 'floresjm82@gmail.com', # replace this with your personal email
+  password: 'helloworld'
+)
 
 
 puts "Seed finished"
+puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
