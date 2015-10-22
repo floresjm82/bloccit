@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   before_save do
     self.email = email.downcase
-
-    self.name = (name.split.each { |n| n.capitalize!}).join(" ")
+    self.role ||= :member
+    self.name = (name.split.each { |n| n.capitalize!}).join(" ") unless name.blank?
   end
 =begin
     n_array = name.split
@@ -43,5 +43,7 @@ class User < ActiveRecord::Base
 # encryption algorithms.
 
    has_secure_password
+
+   enum role: [:member, :admin]
 
 end

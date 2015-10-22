@@ -11,6 +11,6 @@ keys, and is added automatically when you generate with the references argument.
 
       t.timestamps null: false
     end
-    add_foreign_key :comments, :posts
+    #add_foreign_key :comments, :posts
   end
 end

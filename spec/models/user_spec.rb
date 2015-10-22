@@ -27,7 +27,61 @@ RSpec.describe User, type: :model do
        it "should respond to email" do
          expect(user).to respond_to(:email)
        end
-     end
+
+
+       it "should respond to role" do
+          expect(user).to respond_to(:role)
+        end
+
+# we expect users will respond to admin?, which will return whether or not a user
+# is an admin, we'll implement this using the ActiveRecord::Enum class.
+        it "should respond to admin?" do
+          expect(user).to respond_to(:admin?)
+        end
+
+
+        it "should respond to member?" do
+          expect(user).to respond_to(:member?)
+        end
+      end
+
+      describe "roles" do
+
+        it "should be member by default" do
+          expect(user.role).to eql("member")
+        end
+
+
+        context "member user" do
+          it "should return true for #member?" do
+            expect(user.member?).to be_truthy
+          end
+
+          it "should return false for #admin?" do
+            expect(user.admin?).to be_falsey
+          end
+        end
+      end
+
+
+      context "admin user" do
+          before do
+            user.admin!
+          end
+
+          it "should return false for #member?" do
+            expect(user.member?).to be_falsey
+          end
+
+          it "should return true for #admin?" do
+            expect(user.admin?).to be_truthy
+          end
+      end
+
+
+
+
+
 
 # Tests for an Invalid User
 # We are testing for a value that we know should be invalid. This is known as a true negative.
@@ -50,6 +104,8 @@ RSpec.describe User, type: :model do
           end
 
         end
+
+
 
 
 end
