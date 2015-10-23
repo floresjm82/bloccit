@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 # controller actions, except for the show action.
   before_action :require_sign_in, except: :show
 
-  before_action :authorize_user, except: [:show, :new, :create, :edit]
+  before_action :authorize_user, except: [:show, :new, :create]
 
 
 

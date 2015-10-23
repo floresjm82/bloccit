@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   before_action :require_sign_in, except: [:index, :show]
 # we use another before_action filter to check the role of signed-in users. If
 # current_user isnt an admin, we'll redirect them to the topics index view.
-  before_action :authorize_user, except: [:index, :show, :edit ]
+  before_action :authorize_user, except: [:index, :show]
 
 
 
