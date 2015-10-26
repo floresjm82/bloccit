@@ -6,8 +6,6 @@ class TopicsController < ApplicationController
 # current_user isnt an admin, we'll redirect them to the topics index view.
   before_action :authorize_user, except: [:index, :show]
 
-
-
   def index
     @topics = Topic.all
   end
@@ -77,8 +75,6 @@ class TopicsController < ApplicationController
       redirect_to topics_path
     end
   end
-
-
 
 
 end

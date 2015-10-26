@@ -89,6 +89,7 @@ end
 random post to associate each comment with. "Sample" returns a random element
 from the array every time its called.
 =end
+  user: users.sample,
   post: posts.sample,
   body: RandomData.random_paragraph
 

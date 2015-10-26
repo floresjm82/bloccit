@@ -96,5 +96,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def authorize_user2
+    post = Post.find(params[:id])
+#
+    unless current_user == post.user || current_user.admin?
+      flash[:error] = "You must be authorized to do that."
+      redirect_to [post.topic, post]
+    end
+  end
+
 
 end

@@ -12,6 +12,7 @@ resources :posts. (Run rake routes from the command line to view the post routes
 -->
 
     <%= link_to "Edit", edit_topic_sponsored_post_path(@sponsored_post.topic, @sponsored_post), class: 'btn btn-success' %>
+
     <%= link_to "Delete Sponsored Post", [@sponsored_post.topic, @sponsored_post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this sponsored post?' } %>
   </div>
 </div>

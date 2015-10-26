@@ -1,22 +1,15 @@
 Rails.application.routes.draw do
 
-
-=begin
-  get 'posts/index'
-
-  get 'posts/show'
-
-  get 'posts/new'
-
-  get 'posts/edit'
-
-1 - WE call the resources method and pass it a symbol...instructs Rails to
-create post routes for creating, updaing, viewing, and deleting instances of Post
-=end
   resources :advertisements, :questions
   resources :topics do
      resources :posts, except: [:index]
      resources :sponsored_posts, except: [:index]
+   end
+# we use only [] becase we don't want to create any /posts/:id routes, just
+# posts/:post_id/comments routes
+   resources :posts, only: [] do
+# don't need new or index routes as comments are displayed on the posts show view
+     resources :comments, only: [:create, :destroy]
    end
 
 # we create routes for new and create actions...only hash key will preven Rails
@@ -44,4 +37,5 @@ than /welcome/about.
   get 'welcome/faq'
 
   root({to: 'welcome#index'})
+
 end
