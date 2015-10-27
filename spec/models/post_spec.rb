@@ -17,6 +17,8 @@ the spec, so we only need to instantiate it once.
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
   it { should have_many(:comments)}
+  it { should have_many(:labelings) }
+  it { should have_many(:labels).through(:labelings) }
 
   it { should belong_to(:topic)}
   it { should belong_to(:user)}
