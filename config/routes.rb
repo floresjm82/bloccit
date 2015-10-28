@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :ratings, only: [:show]
   resources :labels, only: [:show]
   resources :advertisements, :questions
   resources :topics do

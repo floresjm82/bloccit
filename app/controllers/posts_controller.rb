@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
+
 # we assign @post.user in the same way we assigned @post.topic, to properly scope the new post
     @post.user = current_user
 # if saving the post was successufl, we display success message using flash[:notice]
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
 # direct the user to the posts show view.
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
+      @post.ratings = Rating.update_rating(params[:post][:ratings])
 
 # we assign a value to flash[:notice]. the flash hash provides a way to pass temporary
 # values between actions. Any value placed in flash will be available in next action

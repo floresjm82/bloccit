@@ -1,4 +1,7 @@
-<h1><%= @topic.name %></h1>
+<h1>
+  <%= @topic.name %>
+  <%= render partial: "ratings/list", locals: { ratings: @topic.ratings } %>
+</h1>
 
 <% if user_is_authorized_to_delete_topics? %>
   <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn danger', data: { confirm: 'Are you sure you want to delete this topic?'} %>
