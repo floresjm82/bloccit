@@ -1,10 +1,11 @@
 class TopicsController < ApplicationController
-# we use the before action filter and the require_sign_in method to redirect guest
-# users who attempt to access controller actions other than index or show.
+
   before_action :require_sign_in, except: [:index, :show]
-# we use another before_action filter to check the role of signed-in users. If
-# current_user isnt an admin, we'll redirect them to the topics index view.
-  before_action :authorize_user, except: [:index, :show]
+
+  before_action :authorize_user_for_basic, except: [:index, :show]
+
+  before_action :authorize_user_for_all, only: [:destroy, :create, :new]
+
 
   def index
     @topics = Topic.all
@@ -24,7 +25,7 @@ class TopicsController < ApplicationController
 
      if @topic.save
        @topic.labels = Label.update_labels(params[:topic][:labels])
-       @topic.ratings = Rating.update_ratings(params[:topic][:ratings])
+       #@topic.ratings = Rating.update_ratings(params[:topic][:ratings])
 
        redirect_to @topic, notice: "Topic was saved successfully."
      else
@@ -45,7 +46,7 @@ class TopicsController < ApplicationController
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])
-      @topic.ratings = Rating.update_rating(params[:topic][:ratings])
+      #@topic.ratings = Rating.update_rating(params[:topic][:ratings])
 
       flash[:notice] = "Topic was updated."
       redirect_to @topic
@@ -74,13 +75,19 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:name, :description, :public)
   end
 
-# we define authorize_user which redirects non-admin users to topics_path
-  def authorize_user
+
+  def authorize_user_for_basic
     unless current_user.admin? || current_user.moderator?
       flash[:error] = "You must be authorized to do that."
       redirect_to topics_path
     end
   end
 
+  def authorize_user_for_all
+    unless current_user.admin?
+      flash[:error] = "You must be authorized to do that."
+      redirect_to topics_path
+    end
+  end
 
 end

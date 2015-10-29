@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 # controller actions, except for the show action.
   before_action :require_sign_in, except: :show
 
-  before_action :authorize_user, except: [:show, :new, :create]
+  before_action :authorize_user_for_update, except: [:show, :new, :create,  :destroy]
+  before_action :authorize_user_for_destroy, only: [:destroy]
 
 
 
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
 # direct the user to the posts show view.
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
-      @post.ratings = Rating.update_rating(params[:post][:ratings])
+      #@post.ratings = Rating.update_rating(params[:post][:ratings])
 
 # we assign a value to flash[:notice]. the flash hash provides a way to pass temporary
 # values between actions. Any value placed in flash will be available in next action
@@ -61,6 +62,7 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
+      #@post.ratings = Rating.update_rating(params[:post][:ratings])
       flash[:notice] = "Post was updated."
       redirect_to [@post.topic, @post]
     else
@@ -70,7 +72,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+
     @post = Post.find(params[:id])
+
 
 # we call destroy on @post, we call was successful we set a flash message and
 # redirect the user tot he posts index view... if it fails we redirect the user
@@ -96,6 +100,24 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
 #
     unless current_user == post.user || current_user.admin? || current_user.moderator?
+      flash[:error] = "You must be authorized to do that."
+      redirect_to [post.topic, post]
+    end
+  end
+
+  def authorize_user_for_update
+    post = Post.find(params[:id])
+#
+    unless current_user == post.user || current_user.admin? || current_user.moderator?
+      flash[:error] = "You must be authorized to do that."
+      redirect_to [post.topic, post]
+    end
+  end
+
+  def authorize_user_for_destroy
+    post = Post.find(params[:id])
+#
+    unless current_user == post.user || current_user.admin?
       flash[:error] = "You must be authorized to do that."
       redirect_to [post.topic, post]
     end
