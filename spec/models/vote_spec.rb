@@ -9,7 +9,7 @@ RSpec.describe Vote, type: :model do
 
   it { should belong_to(:post) }
   it { should belong_to(:user) }
-  
+
   it { should validate_presence_of(:value) }
   it { should validate_inclusion_of(:value).in_array([-1, 1]) }
 
@@ -21,6 +21,13 @@ RSpec.describe Vote, type: :model do
 
     it "#update_post should call update_rank on post " do
       expect(post).to receive(:update_rank).at_least(:once)
+      vote.save
+    end
+  end
+
+  describe "create_vote callback" do
+    it "triggers create_vote when a post is created" do
+      expect(vote).to receive(:create_vote).at_least(:once)
       vote.save
     end
   end

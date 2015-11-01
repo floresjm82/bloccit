@@ -44,6 +44,8 @@ the spec, so we only need to instantiate it once.
     end
   end
 
+# Voting
+
   describe "voting" do
    # #5
        before do
@@ -70,8 +72,10 @@ the spec, so we only need to instantiate it once.
            expect( post.points ).to eq(@up_votes - @down_votes)
          end
        end
-       
-     end
+
+
+
+# Update Rank
 
      describe "#update_rank" do
        it "calculates the correct rank" do
@@ -92,5 +96,15 @@ the spec, so we only need to instantiate it once.
        end
      end
 
+# New Vote for New Post
+
+     describe "create_vote callback" do
+       it "votes up the first time a post is created" do
+         expect(post.create_vote).to eq(value: 1)
+         vote.save
+       end
+     end
+
+  end
 
 end
