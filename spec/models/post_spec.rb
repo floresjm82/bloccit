@@ -98,13 +98,31 @@ the spec, so we only need to instantiate it once.
 
 # New Vote for New Post
 
-     describe "create_vote callback" do
-       it "votes up the first time a post is created" do
-         expect(post.create_vote).to eq(value: 1)
-         vote.save
-       end
-     end
+#     describe "create_vote callback" do
+#       it "votes up the first time a post is created" do
+#         expect(post.create_vote).to eq(value: 1)
+#         post.save
+#       end
+#     end
+
+      describe "#create_vote" do
+        it "sets the post up_votes to 1" do
+          expect(post.up_votes).to eq(1)
+        end
+
+        it "calls #create_vote when a post is created" do
+          post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
+          expect(post).to receive(:create_vote)
+          post.save
+        end
+
+        it "associates the vote with the owner of the post" do
+          expect(post.votes.first.user).to eq(post.user)
+        end
+      end
+
 
   end
+
 
 end
