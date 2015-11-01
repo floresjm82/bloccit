@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
+
 # Callbacks are hooks into the life cycle of an Active Record object that allow
 # you to trigger logic before or after an aleration of the object state.
 

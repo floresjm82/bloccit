@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :ratings, only: [:show]
+#  resources :ratings, only: [:show]
   resources :labels, only: [:show]
   resources :advertisements, :questions
   resources :topics do
@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 # don't need new or index routes as comments are displayed on the posts show view
      resources :comments, only: [:create, :destroy]
    end
+
+   post '/up-vote' => 'votes#up_vote', as: :up_vote
+   post '/down-vote' => 'votes#down_vote', as: :down_vote
+
 
 # we create routes for new and create actions...only hash key will preven Rails
 # from creating unnecessary routes.

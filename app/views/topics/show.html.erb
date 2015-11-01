@@ -1,6 +1,8 @@
 <h1>
   <%= @topic.name %>
-  <%= render partial: "ratings/list", locals: { ratings: @topic.ratings } %>
+  <%
+# = render partial: "ratings/list", locals: { ratings: @topic.ratings }
+%>
 </h1>
 
 <% if user_is_authorized_to_delete_topics? %>

@@ -28,7 +28,7 @@ topics = Topic.all
 50.times do
 # 1 - adding ! instructs the method to raise an error if theres a problem with
 # the data being seeded.
-  Post.create!(
+post = Post.create!(
 =begin
 2 - we use methods from a class that does not exist yet, RandomData, that will
 create random strings for title and body.  Writing code for classes and methods
@@ -42,9 +42,12 @@ because it allows you to stay focused on one problem at a time.
   )
 end
 
-Post.find_or_create_by(title: 'Unique Title for Post', body: 'Unique Body for Post')
-
 posts = Post.all
+
+post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+
+rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
+
 
 50.times do
 
@@ -127,6 +130,7 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Vote.count} votes created"
 puts "#{Advertisement.count} advertisements created"
 puts "#{Question.count} questions created"
 puts "#{Topic.count} topics created"
