@@ -6,11 +6,11 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
 
 
-  after_create :send_favorite_emails
+  after_create :send_comments_of_favorites
 
   private
 
-  def send_favorite_emails
+  def send_comments_of_favorites
     post.favorites.each do |favorite|
       FavoriteMailer.new_comment(favorite.user, post, self).deliver_now
     end

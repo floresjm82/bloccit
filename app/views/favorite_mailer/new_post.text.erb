@@ -1,0 +1,10 @@
+The following post has been added to your favorites
+
+ "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 11) %>
+
+ By: <%= @post.user.name %>
+
+ <%= @post.body %>
+
+ Visit online at: <%= topic_post_url(@post.topic, @post) %>
