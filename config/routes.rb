@@ -12,6 +12,8 @@ Rails.application.routes.draw do
    resources :posts, only: [] do
 # don't need new or index routes as comments are displayed on the posts show view
      resources :comments, only: [:create, :destroy]
+     resources :favorites, only: [:create, :destroy]
+
    end
 
    post '/up-vote' => 'votes#up_vote', as: :up_vote

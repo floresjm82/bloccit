@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
   has_many :votes, dependent: :destroy # to ensure that votes are destroyed when their parent post is deleted.
+  has_many :favorites, dependent: :destroy
 
 #  has_one :rating, as: :rateable
 

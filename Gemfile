@@ -69,3 +69,6 @@ end
 
   # Used for encrypting User Password
   gem 'bcrypt'
+
+  # Used to store Sendgrid and Devise credentials as environment variables
+  gem 'figaro', '1.0'

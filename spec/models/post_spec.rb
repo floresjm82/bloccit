@@ -20,6 +20,7 @@ the spec, so we only need to instantiate it once.
   it { should have_many(:labelings) }
   it { should have_many(:labels).through(:labelings) }
   it { should have_many(:votes) }
+  it { should have_many(:favorites)}
 
   it { should belong_to(:topic)}
   it { should belong_to(:user)}
@@ -70,8 +71,7 @@ the spec, so we only need to instantiate it once.
            expect( post.points ).to eq(@up_votes - @down_votes)
          end
        end
-       
-     end
+
 
      describe "#update_rank" do
        it "calculates the correct rank" do
@@ -92,5 +92,6 @@ the spec, so we only need to instantiate it once.
        end
      end
 
+  end
 
 end
