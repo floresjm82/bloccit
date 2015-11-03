@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
 # we create routes for new and create actions...only hash key will preven Rails
 # from creating unnecessary routes.
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
     post 'users/confirm' => 'users#confirm'
 
   resources :sessions, only: [:new, :create, :destroy]

@@ -11,8 +11,9 @@ class Post < ActiveRecord::Base
 #  has_one :rating, as: :rateable
 
   default_scope { order('rank DESC') }
-  scope :ordered_by_title, -> {order('title ASC')}
-  scope :ordered_by_reverse_created_at, -> {order('create_at ASC')}
+  scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
+#  scope :ordered_by_title, -> {order('title ASC')}
+#  scope :ordered_by_reverse_created_at, -> {order('create_at ASC')}
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
