@@ -8,4 +8,9 @@ module PostsHelper
     current_user && (current_user == post.user || current_user.admin? || current_user.moderator?)
   end
 
+  def profile_posts? (post)
+    current_user.posts.count >= 1
+  end
+
+
 end
