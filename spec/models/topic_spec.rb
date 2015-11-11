@@ -16,6 +16,7 @@ RSpec.describe Topic, type: :model do
   it { should validate_length_of(:description).is_at_least(15) }
 
   describe "attibutes" do
+
     it "should respond to name" do
       expect(topic).to respond_to(:name)
     end
@@ -37,6 +38,7 @@ RSpec.describe Topic, type: :model do
 
 
    describe "scopes" do
+
      before do
        @public_topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
        @private_topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph, public: false)
@@ -52,6 +54,19 @@ RSpec.describe Topic, type: :model do
          expect(Topic.visible_to(nil)).to eq([@public_topic])
        end
      end
+
+     describe "publicly_viewable" do
+       it "returns all publicly viewable topics" do
+         expect(Topic.publicly_viewable).to eq([@public_topic])
+       end
+     end
+
+     describe "privately_viewable" do
+       it "returns all privately viewable topics" do
+         expect(Topic.privately_viewable).to eq([@private_topic])
+       end
+     end
+
    end
 
 end
