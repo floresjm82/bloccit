@@ -35,6 +35,12 @@
       <%= link_to "Edit", edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %>
     <% end %>
   </div>
+
+<%
+=begin
+Alignment needs to be fixed
+=end
+%>
     <div class="col-md-4">
       <h3>
         <%= pluralize(@post.points, 'point') %>
