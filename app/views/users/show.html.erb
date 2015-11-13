@@ -21,18 +21,10 @@
  </div>
 
  <h2>Posts</h2>
-   <% if profile_posts?(@post) %>
-     <%= render @user.posts %>
-   <% else %>
-     <p> No posts have been submitted by this user </p>
-   <% end %>
+   <%= render_posts_for(@user) %>
 
  <h2>Comments</h2>
-   <% if profile_comments?(@comment) %>
-     <%= render @user.comments %>
-   <% else %>
-     <p> No comments have been submitted by this user </p>
-   <% end %>
+   <%= render_comments_for(@user) %>
 
  <h2>Favorite Posts</h2>
-    <%= current_user.favorite_for(@post) %>
+    <%= render_favorite_posts_for(@user) %>
