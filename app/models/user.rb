@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     self.role ||= :member
     self.name = (name.split.each { |n| n.capitalize!}).join(" ") unless name.blank?
   end
+
+  before_create :generate_auth_token
 =begin
     n_array = name.split
     n_capitalize = []
@@ -60,6 +62,12 @@ class User < ActiveRecord::Base
      "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
    end
 
+   def generate_auth_token
+     loop do
+       self.auth_token = SecureRandom.base64(64)
+       break unless User.find_by(auth_token: auth_token)
+     end
+   end
 
 
 
