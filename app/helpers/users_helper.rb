@@ -23,7 +23,7 @@ module UsersHelper
 
   def render_favorite_posts_for(user)
     if user.favorites.any?
-      render(@user.favorites.collect{|favorite| favorite.post}).html_safe
+      render(user.favorites.collect{|favorite| favorite.post}, ).html_safe
     else
       "<p>#{user.name} has not favorited any posts</p>".html_safe
     end

@@ -12,7 +12,7 @@
          <h2 class="media-heading"><%= @user.name %></h2>
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
-           <%= pluralize(@user.comments.count, 'comment') %>
+           <%= pluralize(@user.comments.count, 'comment') %>,
            <%= pluralize(@user.favorites.count, 'favorite') %>
          </small>
        </div>
